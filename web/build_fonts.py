@@ -2,20 +2,22 @@
 # -*- coding: utf-8 -*-
 """
 字体子集化自托管构建器。
-从 index.html 提取实际用到的字符,向 Google Fonts text= 接口请求裁剪好的 woff2,
+从 index.html(以及同目录下的 plan-*.html 方案稿,若存在)提取实际用到的字符,
+向 Google Fonts text= 接口请求裁剪好的 woff2,
 下载到 网页版/fonts/,并生成 fonts.gen.css(@font-face,指向本地文件)。
 文本变更后重跑本脚本即可重建子集。用法:python3 build_fonts.py
 """
-import re, os, sys, urllib.request, urllib.parse
+import re, os, sys, glob, urllib.request, urllib.parse
 
 WEB = os.path.dirname(os.path.abspath(__file__))
-HTML = os.path.join(WEB, 'index.html')
+HTMLS = [os.path.join(WEB, 'index.html')] + sorted(glob.glob(os.path.join(WEB, 'plan-*.html')))
 FONTS_DIR = os.path.join(WEB, 'fonts')
 os.makedirs(FONTS_DIR, exist_ok=True)
 UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/120.0 Safari/537.36')
 
-src = open(HTML, encoding='utf-8').read()
+print('扫描:', ', '.join(os.path.basename(p) for p in HTMLS))
+src = '\n'.join(open(p, encoding='utf-8').read() for p in HTMLS)
 
 # --- 1. 剥离注释以精简 CJK 子集(字符串字面量保留,不会误伤曲目名等) ---
 clean = re.sub(r'/\*.*?\*/', ' ', src, flags=re.S)      # CSS/JS 块注释
@@ -39,7 +41,7 @@ for m in re.finditer(r'''(['"`])(.*?)\1''', src, flags=re.S):
 
 cjk_text = ''.join(sorted(cjk))
 # JetBrains 只渲染拉丁:实际用到的 ASCII + 常用扩展标点(缺则自动回退 Noto)
-latin_text = ''.join(sorted(latin)) + '–—·…→'
+latin_text = ''.join(sorted(latin)) + '–—·…→←'
 
 print(f'CJK 唯一字符 {len(cjk)} 个 · 拉丁 {len(latin)} 个')
 

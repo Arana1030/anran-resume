@@ -64,8 +64,8 @@ a { color: var(--acc); text-decoration: none; }
 .brand .cursor { display: inline-block; width: 7px; height: 14px; background: var(--acc); vertical-align: -2px; margin-left: 4px; animation: blink 1.2s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 /* 章节导航:纯文字 + 活动态下划线,去数字去边框,保持克制 */
-.tabs { display: flex; gap: clamp(10px, 1.8vw, 26px); margin-left: auto; }
-.tabs button { position: relative; font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: 0.04em;
+.tabs { display: flex; gap: clamp(8px, 1.5vw, 20px); margin-left: auto; }
+.tabs button { position: relative; font-family: var(--sans); font-size: 13.5px; font-weight: 500; letter-spacing: 0.05em;
   color: var(--dim); background: transparent; border: none; padding: 9px 2px; cursor: pointer;
   white-space: nowrap; transition: color .25s; }
 .tabs button:hover { color: var(--ink); }
@@ -105,7 +105,14 @@ body.slides .ws.active.bwd { animation-name: wsInBwd; }
 .slide-nav.left { left: 16px; } .slide-nav.right { right: 16px; }
 .slide-nav.off { opacity: 0.18; pointer-events: none; }
 body:not(.slides) .slide-nav { display: none; }
-.slide-count { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.16em; white-space: nowrap; margin-left: 16px; }
+.top-dl { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; font-weight: 700;
+  color: #06281F; background: linear-gradient(135deg, var(--gold), var(--gold-hi)); border-radius: 999px;
+  padding: 7px 15px; box-shadow: 0 4px 16px rgba(228, 185, 110, 0.25); transition: transform .15s, box-shadow .2s, opacity .25s; }
+body:not(.slides) .top-dl { margin-left: auto; }   /* 移动端无导航簇,胶囊自行靠右 */
+.top-sep { display: none; width: 1px; height: 16px; background: var(--line); flex-shrink: 0; }
+body.slides .top-sep { display: block; }   /* 桌面右簇分隔:导航·页码 │ 下载 */
+.top-dl:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(228, 185, 110, 0.4); }
+.slide-count { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.18em; white-space: nowrap; margin-left: 6px; }
 body:not(.slides) .slide-count { display: none; }
 @media (min-width: 1024px) and (orientation: landscape) {
   .topbar, .player-bar {
@@ -213,7 +220,7 @@ body.slides .reveal { opacity: 1 !important; transform: none !important; }
 .tonearm.on { transform: rotate(4deg); }
 .tonearm svg { width: 100%; height: 100%; overflow: visible; }
 .player .now { margin-top: 10px; text-align: center; }
-.player .now .t { font-family: var(--serif); font-weight: 900; font-size: clamp(17px, 1.8vw, 21px); letter-spacing: 0.12em; }
+.player .now .t { font-family: var(--serif); font-weight: 900; font-size: clamp(16px, 1.7vw, 19px); letter-spacing: 0.12em; }
 .player .now .a { margin-top: 4px; font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.12em; }
 .player .ctrl { margin-top: 11px; display: flex; align-items: center; gap: 13px; }
 .pbtn { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; border: 1px solid var(--line);
@@ -500,7 +507,7 @@ body.slides .fusion-hero .fh-line { white-space: nowrap; }
 .fusion-hero .fh-line .a { color: var(--acc); } .fusion-hero .fh-line .g { color: var(--gold); }
 .fusion-hero .fh-sub { margin-top: 12px; color: var(--dim); font-size: clamp(13px, 1.3vw, 15px); line-height: 1.9; }
 .converge { display: grid; grid-template-columns: 1fr 52px 1fr; gap: clamp(12px, 2vw, 22px); align-items: stretch; margin-bottom: 12px; }
-.cv-side { border: 1px solid var(--line-soft); border-radius: 14px; padding: clamp(15px, 1.8vw, 21px); background: var(--bg-panel); position: relative; overflow: hidden; }
+.cv-side { border: 1px solid var(--line-soft); border-radius: 14px; padding: clamp(15px, 1.55vw, 18px); background: var(--bg-panel); position: relative; overflow: hidden; }
 .cv-side.ai { border-color: rgba(95,212,196,0.32); }
 .cv-side.ai::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 70% 60% at 0% 0%, rgba(95,212,196,0.08), transparent 60%); }
 .cv-side.music { border-color: rgba(228,185,110,0.32); }
@@ -534,7 +541,7 @@ body.slides .fusion-hero .fh-line { white-space: nowrap; }
 .fit-list li b { color: var(--ink); font-weight: 600; }
 
 /* ---- 履历(slides:两列等高、底沿对齐) ---- */
-body.slides #ws6 .cred-grid { flex: 1; min-height: 0; align-items: stretch; }
+body.slides #ws6 .cred-grid { flex: 1; min-height: 0; align-items: stretch; margin-bottom: 36px; }   /* 底部让位右下继续胶囊 */
 body.slides #ws6 .cred-col { display: flex; flex-direction: column; }
 body.slides #ws6 .cred-col .panel { margin-bottom: 0; display: flex; flex-direction: column; }
 body.slides #ws6 .cred-col .panel:last-child { flex: 1; }
@@ -598,7 +605,7 @@ body.slides #ws6 .skillset { flex: 1; justify-content: center; gap: clamp(11px, 
 .skg-lvl.gold { color: var(--gold); border-color: rgba(228,185,110,0.4); }
 .skg-lvl.dim { color: var(--faint); border-color: var(--line-soft); }
 .skg-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-.skg-use { margin-top: 9px; line-height: 1.8; font-size: 12px; color: var(--dim); line-height: 1.65; padding-left: 15px; position: relative; }
+.skg-use { margin-top: 9px; font-size: 12px; color: var(--dim); line-height: 1.65; padding-left: 15px; position: relative; }
 .skg-use::before { content: '→'; position: absolute; left: 0; color: var(--acc); }
 .skg-use b { color: var(--ink); font-weight: 600; }
 .skg-div { height: 1px; background: var(--line-soft); margin: 1px 0; }
@@ -629,12 +636,12 @@ body.slides #ws6 .skillset { flex: 1; justify-content: center; gap: clamp(11px, 
 .hero-ctrl { display: flex; align-items: center; gap: 12px; margin-top: 2px; }
 
 /* ---------------- S0 开场 · 两面 ---------------- */
-.open-head { text-align: center; margin-bottom: clamp(10px, 1.8vh, 18px); }
-.open-head .tagline { margin: 10px 0 6px; }
+.open-head { text-align: center; margin-bottom: 7px; }
+.open-head .tagline { margin: 6px 0 4px; }
 .open-name { font-family: var(--serif); font-weight: 900; font-size: clamp(32px, 4vw, 48px); letter-spacing: 0.12em;
   display: flex; align-items: center; justify-content: center; gap: 16px; }
 .open-name .seal { width: clamp(44px, 4vw, 58px); }
-.open-state { margin-top: clamp(6px, 1.2vh, 11px); font-family: var(--serif); font-weight: 900; font-size: clamp(18px, 2vw, 24px); letter-spacing: 0.14em; }
+.open-state { margin-top: 6px; font-family: var(--serif); font-weight: 900; font-size: clamp(18px, 2vw, 24px); letter-spacing: 0.14em; }
 .open-duo { margin-bottom: 0; }
 .music-flex { position: relative; display: flex; gap: 18px; align-items: center; }
 .specgram { width: clamp(88px, 8vw, 110px); aspect-ratio: 1; border-radius: 14px; background: #0B1322;
@@ -654,14 +661,28 @@ body.slides #ws6 .skillset { flex: 1; justify-content: center; gap: clamp(11px, 
 .mini-deck .cap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--faint); max-width: 150px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .mini-deck .cap em { color: var(--acc); font-style: normal; }
-.open-merge { text-align: center; margin-top: clamp(12px, 2.2vh, 20px); font-family: var(--serif); font-weight: 900;
+.open-merge { text-align: center; margin-top: clamp(10px, 1.45vh, 13px); font-family: var(--serif); font-weight: 900;
   font-size: clamp(17px, 1.9vw, 24px); letter-spacing: 0.05em; }
 .open-merge .a { color: var(--acc); } .open-merge .g { color: var(--gold); }
-.open-sub { text-align: center; margin-top: 8px; color: var(--dim); font-size: clamp(12.5px, 1.2vw, 14.5px); letter-spacing: 0.03em; }
-.open-cta { text-align: center; margin-top: clamp(10px, 1.7vh, 14px); }
-.open-foot { display: flex; align-items: center; justify-content: center; gap: clamp(14px, 2vw, 26px); flex-wrap: wrap; margin-top: clamp(7px, 1.2vh, 9px); }
+.open-sub { text-align: center; margin-top: 10px; color: var(--dim); font-size: clamp(12.5px, 1.2vw, 14.5px); letter-spacing: 0.03em; }
+.open-cta { display: flex; align-items: center; justify-content: center; gap: 8px 14px; flex-wrap: wrap; margin-top: clamp(13px, 1.8vh, 16px); }
+.open-cta .dl-btn { font-size: 12.5px; padding: 10px 24px; border-radius: 12px; }
+.go-start { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; border: none;
+  font-family: var(--serif); font-weight: 900; font-size: 14px; letter-spacing: 0.1em;
+  color: #06281F; background: linear-gradient(135deg, var(--acc), var(--acc-hi));
+  border-radius: 12px; padding: 10px 22px; box-shadow: 0 8px 26px rgba(95, 212, 196, 0.22);
+  transition: transform .15s, box-shadow .2s; }
+.go-start:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(95, 212, 196, 0.4); }
+.go-start .icon { font-size: 15px; }
+.op-line { flex-basis: 100%; margin-top: 0; font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.12em; color: var(--ink); text-align: center; }
+.op-line b { color: var(--acc); font-weight: 400; }
+.op-line .ol-m { display: none; }
+body.mslides .op-line .ol-d { display: none; }
+body.mslides .op-line .ol-m { display: inline; }
+.open-foot { display: flex; align-items: center; justify-content: center; gap: clamp(14px, 2vw, 26px); flex-wrap: wrap; margin-top: clamp(8px, 1.2vh, 11px); }
 .open-metrics { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 0; }
-.open-metrics .metric { padding: 6px 12px; }
+.open-metrics .metric { padding: 4px 12px; }
 .open-metrics .metric .v { font-size: 19px; }
 
 /* ---------------- 转场页 ---------------- */
@@ -671,6 +692,7 @@ body.slides #ws6 .skillset { flex: 1; justify-content: center; gap: clamp(11px, 
 .turn-line em { font-style: normal; color: var(--gold); }
 .turn-sub { margin-top: 18px; color: var(--dim); font-size: clamp(13.5px, 1.4vw, 16px); line-height: 1.9; }
 .turn-wave { display: flex; justify-content: center; gap: 4px; align-items: flex-end; height: 24px; margin-top: 30px; }
+.turn-cta { margin-top: clamp(26px, 4vh, 40px); }
 .turn-wave i { width: 3px; background: linear-gradient(var(--gold-hi), var(--gold)); border-radius: 2px; animation: wv 1.1s ease-in-out infinite; }
 
 /* ---------------- 双项目并排 ---------------- */
@@ -719,8 +741,11 @@ body.slides #ws6 .skillset { flex: 1; justify-content: center; gap: clamp(11px, 
 .stat-strip .stat-num i { font-style: normal; font-size: 0.5em; }
 .stat-strip span { color: var(--dim); font-size: 12.5px; line-height: 1.6; }
 /* slides:项目页纵向充满 */
+body.slides #ws1 { padding-bottom: calc(var(--transport-h) + 76px); }   /* 旗舰面板是末子(margin-bottom:auto 居中),抬底部内边距给右下胶囊让位 */
 body.slides #ws1 .proj.flag { display: flex; flex-direction: column; }
 body.slides #ws1 .proj.flag .proj-body { gap: clamp(18px, 2.6vh, 30px) clamp(24px, 3vw, 44px); }
+body.slides #ws1 .proj-take { padding-top: 9px; }
+body.slides #ws1 .pipe { padding-top: 7px; }   /* 与底部让位配套,收回 6px 防内裁 */
 .proj.flag .proj-body > div { display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
 .proj.flag .fcell { display: flex; flex-direction: column; }
 .proj.flag .proj-body > div > .fcell:last-child { flex: 1; justify-content: space-between; }
@@ -744,13 +769,13 @@ body.slides .tc-panel .tc-row, body.slides .tc-panel .tc-n, body.slides .tc-pane
 /* 开场页窄档(841-880):只收留白,保内容与比例 */
 @media (min-width: 1024px) and (max-height: 880px) {
   .open-head { margin-bottom: 7px; }
-  .open-head .tagline { margin: 8px 0 5px; }
+  .open-head .tagline { margin: 6px 0 4px; }
   .open-state { margin-top: 5px; }
   .open-duo .cv-side { padding: 12px 15px; }
-  .open-merge { margin-top: 9px; }
-  .open-sub { margin-top: 5px; }
-  .open-cta { margin-top: 10px; }
-  .open-foot { margin-top: 9px; }
+  .open-merge { margin-top: 11px; }
+  .open-sub { margin-top: 9px; }
+  .open-cta { margin-top: 16px; }
+  .open-foot { margin-top: 12px; }
   .open-metrics .metric { padding: 7px 12px; }
   .mini-deck .vinyl, .specgram { width: clamp(86px, 7.8vw, 100px); }
 }
@@ -812,7 +837,7 @@ body.slides .tc-panel .tc-row, body.slides .tc-panel .tc-n, body.slides .tc-pane
   .proj-take { padding: 11px 16px 0; font-size: 14px; }
   .fit-grid { gap: 12px; }
   .open-head { margin-bottom: 6px; } .open-head .tagline { margin: 6px 0 5px; padding: 3px 10px; font-size: 10px; }
-  .open-sub { margin-top: 4px; font-size: 11.5px; } .open-cta { margin-top: 8px; } .open-cta .dl-btn { padding: 9px 16px; font-size: 11px; } .open-foot { margin-top: 8px; }
+  .open-sub { margin-top: 8px; font-size: 11.5px; } .open-cta { margin-top: 16px; gap: 10px; } .open-cta .dl-btn { padding: 9px 16px; font-size: 11px; } .go-start { padding: 8px 16px; font-size: 12.5px; } .op-line { font-size: 11.5px; } .open-foot { margin-top: 11px; }
   .panel-h { padding: 7px 12px; }
   .cred-grid { gap: 11px; } .cred-col { gap: 11px; }
   .panel-b { padding: 11px 13px; }
@@ -828,7 +853,7 @@ body.slides .tc-panel .tc-row, body.slides .tc-panel .tc-n, body.slides .tc-pane
 body.mslides { overflow: hidden; position: fixed; inset: 0; width: 100%; }
 body.mslides .ws { display: none; }
 body.mslides .ws.active { min-height: 0; height: 100vh; height: 100dvh; overflow-y: auto; -webkit-overflow-scrolling: touch;
-  padding: calc(var(--topbar-h) + 58px) clamp(16px, 4vw, 44px) calc(var(--transport-h) + env(safe-area-inset-bottom, 0px) + 44px);
+  padding: calc(var(--topbar-h) + 58px) clamp(16px, 4vw, 44px) calc(var(--transport-h) + env(safe-area-inset-bottom, 0px) + 120px);   /* 手机:给页底胶囊留位 */
   animation: mIn .5s ease both; }
 body.mslides .ws.active.bwd { animation-name: mInB; }
 @keyframes mIn { from { opacity: 0; transform: translateY(44px); } to { opacity: 1; transform: none; } }
@@ -838,11 +863,43 @@ body.mslides .ws.active { display: flex; flex-direction: column; }
 body.mslides .ws.active > * { flex-shrink: 0; }   /* 防 overflow:hidden 卡片被 flex 压缩裁切 */
 body.mslides .ws.active > :first-child { margin-top: auto; }
 body.mslides .ws.active > :last-child { margin-bottom: auto; }   /* 短页垂直居中,长页自动置顶可滚 */
+/* 「继续 → 下一章」固定按钮:桌面右下,移动底部居中 */
+.go-cont { position: fixed; z-index: 62; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; white-space: nowrap;
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.1em; font-weight: 600; color: #06281F;
+  background: linear-gradient(135deg, var(--acc), var(--acc-hi)); border: none; border-radius: 999px;
+  padding: 13px 24px; box-shadow: 0 10px 30px rgba(95, 212, 196, 0.3); transition: transform .15s, opacity .3s; }
+.go-cont:hover { transform: translateY(-2px); }
+.go-cont .icon { font-size: 13px; }
+.go-cont b { font-weight: 700; }
+.go-cont.off { opacity: 0; pointer-events: none; }
+body.slides .go-cont { right: var(--gutter, 84px); bottom: calc(var(--transport-h) + 18px); }   /* 与内容右缘对齐 */
+@keyframes gcIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+body.slides .go-cont.in:not(.off) { animation: gcIn .5s cubic-bezier(0.16, 0.8, 0.3, 1) 0.28s both; }   /* 翻页后跟随内容进场 */
+.go-prev { position: fixed; z-index: 62; display: none; align-items: center; gap: 8px; cursor: pointer; white-space: nowrap;
+  font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: var(--dim);
+  background: transparent; border: none; padding: 8px 10px 8px 0;
+  transition: color .2s, opacity .3s; }
+body.slides .go-prev { display: inline-flex; left: var(--gutter, 84px); bottom: calc(var(--transport-h) + 25px); }   /* 纯文字返回,与继续胶囊光学中线对齐 */
+.go-prev:hover { color: var(--acc); }
+.go-prev:hover .icon { transform: translateX(-3px); }
+.go-prev.off { opacity: 0; pointer-events: none; }
+.go-prev .icon { font-size: 14px; color: var(--acc); transition: transform .2s; }
+@keyframes gpIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+body.slides .go-prev.in:not(.off) { animation: gpIn .5s cubic-bezier(0.16, 0.8, 0.3, 1) 0.28s both; }   /* 与继续胶囊同节奏,自左滑入 */
+.gc-m { display: none; }
+body.mslides .gc-d { display: none; }
+body.mslides .gc-m { display: inline; }
+body.mslides .go-cont { left: 50%; transform: translateX(-50%); bottom: calc(var(--transport-h) + env(safe-area-inset-bottom, 0px) + 14px);
+  padding: 10px 18px; font-size: 12px; font-family: var(--mono); letter-spacing: 0.08em; }
+body.mslides .go-cont .icon { transform: rotate(90deg); font-size: 12px; }
+body.mslides .go-cont.wait { opacity: 0; pointer-events: none; }   /* 未滑到页底:隐藏 */
+body.mslides .vnav.down { display: none; }   /* 下箭头由页底胶囊取代 */
+body.mslides.nocont .ws.active { padding-bottom: calc(var(--transport-h) + env(safe-area-inset-bottom, 0px) + 44px); }   /* 首/末页无胶囊,免空滚 */
 /* 纵向引导箭头：上下边缘正中，样式与桌面左右箭头一致 */
 .vnav { position: fixed; left: 50%; transform: translateX(-50%); z-index: 60; width: 50px; height: 50px; border-radius: 50%;
   display: none; place-items: center; background: rgba(13, 20, 36, 0.7); border: 1px solid var(--line); color: var(--acc);
   font-size: 16px; cursor: pointer; backdrop-filter: blur(8px); transition: background .2s, border-color .2s, opacity .3s; }
-body.mslides .vnav { display: grid; }
+body.mslides .vnav { display: grid; transition: opacity .25s; }
 .vnav.up { top: calc(var(--topbar-h) + 8px); }
 .vnav.down { bottom: calc(var(--transport-h) + env(safe-area-inset-bottom, 0px) + 12px); }
 .vnav.off { opacity: 0.18; pointer-events: none; }
@@ -875,7 +932,7 @@ body.mslides .vnav { display: grid; }
   .open-name { justify-content: flex-start; text-align: left; }
   .open-head, .open-merge, .open-sub { text-align: left; }
   .open-state { font-size: clamp(20px, 5.6vw, 24px); }
-  .open-cta .dl-btn { width: 100%; justify-content: center; }
+  .open-cta .dl-btn, .go-start { width: 100%; justify-content: center; }
   .open-foot { justify-content: stretch; }
   .open-metrics { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: 10px; }
   .proj-take { padding: 12px 16px 0; }
@@ -892,6 +949,7 @@ body.mslides .vnav { display: grid; }
 
 /* ---------------- iPad 竖屏(700–1023 或更宽竖屏):双列排布 ---------------- */
 @media (min-width: 700px) and (max-width: 1023px), (min-width: 1024px) and (orientation: portrait) {
+  body.mslides .ws.active { padding-bottom: calc(var(--transport-h) + env(safe-area-inset-bottom, 0px) + 58px); }
   .tabs { display: none; }                     /* 竖屏翻页即导航,不放章节标签 */
   .slide-count { margin-left: auto; }
   .converge { grid-template-columns: 1fr 44px 1fr; gap: 14px; }
@@ -905,7 +963,7 @@ body.mslides .vnav { display: grid; }
   .music-flex { flex-direction: row; align-items: center; }
   .open-head, .open-merge, .open-sub { text-align: center; }
   .open-name { justify-content: center; }
-  .open-cta { text-align: center; } .open-cta .dl-btn { width: auto; }
+  .open-cta .dl-btn, .go-start { width: auto; }
   .open-metrics { grid-template-columns: repeat(4, 1fr); }
   .end-cta a, .end-cta button { flex: 0 1 auto; }
   .fusion-hero, .fusion-eq { text-align: center; }
@@ -994,6 +1052,8 @@ body.mslides .vnav { display: grid; }
     <button data-ws="4">履历</button>
   </nav>
   <span class="slide-count" id="slideNum" aria-hidden="true">01 / 08</span>
+  <i class="top-sep" aria-hidden="true"></i>
+  <a class="top-dl" href="anran-resume.pdf" target="_blank" rel="noopener">⬇ 下载简历</a>
   <div class="chap-progress" id="chapProgress"></div>
 </header>
 
@@ -1052,7 +1112,11 @@ body.mslides .vnav { display: grid; }
         <div class="metric"><div class="v"><span data-count="100">100</span><small>+</small></div><div class="k">线上发表作品</div></div>
       </div>
     </div>
-    <div class="open-cta"><a class="dl-btn cta-glow" href="anran-resume.pdf" target="_blank" rel="noopener">⬇ 查看 / 下载完整简历 PDF</a></div>
+    <div class="open-cta">
+      <a class="dl-btn cta-glow" href="anran-resume.pdf" target="_blank" rel="noopener">⬇ 查看 / 下载完整简历 PDF</a>
+      <button class="go-start" id="megaStart">开始 · 认识我的两面<svg class="icon" viewBox="0 0 24 24"><path d="M9.2 5.6 15.6 12l-6.4 6.4-1.5-1.5L12.6 12 7.7 7.1z"/></svg></button>
+      <div class="op-line"><span class="ol-d">键盘 <b>← →</b> · 两侧<b>箭头</b> · <b>滚轮</b>，均可翻页</span><span class="ol-m">上滑翻到下一页</span></div>
+    </div>
   </section>
 
   <!-- ================= S1 写代码的我 · 旗舰项目 ================= -->
@@ -1182,6 +1246,7 @@ body.mslides .vnav { display: grid; }
       <div class="turn-line">代码，只是我的一半。<br><em>另一半，不靠显卡，靠耳朵。</em></div>
       <div class="turn-sub">接下来这一页，是我的另一面——能播放的那种。建议戴上耳机。</div>
       <div class="turn-wave"><i></i><i style="animation-delay:.12s"></i><i style="animation-delay:.24s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.06s"></i></div>
+      <div class="turn-cta"><button class="go-start" id="turnNext">继续 · 我的另一面<svg class="icon" viewBox="0 0 24 24"><path d="M9.2 5.6 15.6 12l-6.4 6.4-1.5-1.5L12.6 12 7.7 7.1z"/></svg></button></div>
     </div>
   </section>
 
@@ -1354,6 +1419,8 @@ body.mslides .vnav { display: grid; }
 
 <button class="slide-nav left off" id="arrowL" aria-label="上一页"><svg class="icon" viewBox="0 0 24 24"><path d="M14.8 5.6 8.4 12l6.4 6.4 1.5-1.5L11.4 12l4.9-4.9z"/></svg></button>
 <button class="slide-nav right" id="arrowR" aria-label="下一页"><svg class="icon" viewBox="0 0 24 24"><path d="M9.2 5.6 15.6 12l-6.4 6.4-1.5-1.5L12.6 12 7.7 7.1z"/></svg></button>
+<button class="go-cont" id="goCont"><span class="gc-d">继续</span><svg class="icon" viewBox="0 0 24 24"><path d="M9.2 5.6 15.6 12l-6.4 6.4-1.5-1.5L12.6 12 7.7 7.1z"/></svg><b class="gc-d" id="goContName">写代码的我</b><span class="gc-m">上滑或点击 · 下一页</span></button>
+<button class="go-prev" id="goPrev" aria-label="上一页"><svg class="icon" viewBox="0 0 24 24"><path d="M14.8 5.6 8.4 12l6.4 6.4 1.5-1.5L11.4 12l4.9-4.9z"/></svg>上一页</button>
 <button class="vnav up off" id="vUp" aria-label="上一页"><svg class="icon" viewBox="0 0 24 24"><path d="M5.6 14.8 12 8.4l6.4 6.4-1.5 1.5L12 11.4l-4.9 4.9z"/></svg></button>
 <button class="vnav down hint" id="vDown" aria-label="下一页"><svg class="icon" viewBox="0 0 24 24"><path d="M5.6 9.2 12 15.6l6.4-6.4-1.5-1.5L12 12.6 7.1 7.7z"/></svg></button>
 
@@ -1485,6 +1552,8 @@ function syncNav(pushHash = true) {
   if (arrowR) arrowR.classList.toggle('off', cur === WS.length - 1);
   if (vUp) vUp.classList.toggle('off', cur === 0);
   if (vDown) vDown.classList.toggle('off', cur === WS.length - 1);
+  if (typeof syncMap === 'function') syncMap();
+  if (typeof updEndCue === 'function') updEndCue();
   if (pushHash) { try { history.replaceState(null, '', '#' + HASHES[cur]); } catch (e) { /* file:// 下部分浏览器禁止，忽略 */ } }
 }
 function show(i, pushHash = true) {
@@ -1887,6 +1956,45 @@ function enter(withSound) {
   setTimeout(() => gate.remove(), 600);
   if (withSound) startPlay();    /* 进入即播放当前曲目，整站唯一音源 */
   syncSoundUI();
+}
+/* 进度地图 + 继续按钮 */
+const PAGE_NAMES = ['我是谁', '写代码的我', '写代码的我 · 下', '我的另一面', '写歌的我', '交汇的我', '履历', '终章'];   /* [3] 是转场页,胶囊文案用叙事说法 */
+/* 移动端:页底胶囊只在内容滑到底时出现(一屏放下的短页直接显示) */
+function updEndCue() {
+  if (!goCont) return;
+  if (isDesktop()) { goCont.classList.remove('wait'); return; }
+  const w = WS[cur];
+  const atEnd = w.scrollHeight - w.clientHeight - w.scrollTop <= 16;
+  goCont.classList.toggle('wait', !atEnd);
+}
+WS.forEach(w => w.addEventListener('scroll', updEndCue, { passive: true }));
+const goCont = document.getElementById('goCont');
+if (goCont) goCont.addEventListener('animationend', () => goCont.classList.remove('in'));
+const goContName = document.getElementById('goContName');
+if (goCont) goCont.addEventListener('click', () => show(cur + 1));
+const goPrev = document.getElementById('goPrev');
+if (goPrev) goPrev.addEventListener('click', () => show(cur - 1));
+if (goPrev) goPrev.addEventListener('animationend', () => goPrev.classList.remove('in'));
+const megaStart = document.getElementById('megaStart');
+if (megaStart) megaStart.addEventListener('click', () => show(cur + 1));
+const turnNext = document.getElementById('turnNext');
+if (turnNext) turnNext.addEventListener('click', () => show(cur + 1));
+function syncMap() {
+  if (goCont) {
+    let nx = cur + 1;
+    if (!isDesktop()) while (MOBILE_SKIP.has(nx) && nx < WS.length - 1) nx++;
+    const noCont = cur === 0 || cur === 3 || cur >= WS.length - 1;   /* 首页/转场页有居中按钮、末页无下一页:胶囊都不显示 */
+    goCont.classList.toggle('off', noCont);
+    if (typeof goPrev !== 'undefined' && goPrev) goPrev.classList.toggle('off', cur === 0 || cur === 3);   /* 转场页用居中按钮,角落控件全收 */
+    document.body.classList.toggle('nocont', noCont);
+    if (noCont) { goCont.classList.remove('in'); }
+    else { goCont.classList.remove('in'); void goCont.offsetWidth; goCont.classList.add('in'); }
+    if (typeof goPrev !== 'undefined' && goPrev) {
+      if (cur === 0 || cur === 3) { goPrev.classList.remove('in'); }
+      else { goPrev.classList.remove('in'); void goPrev.offsetWidth; goPrev.classList.add('in'); }
+    }
+    if (goContName && nx < WS.length) goContName.textContent = PAGE_NAMES[nx];   /* 保留「· 下」,否则与当前页同名 */
+  }
 }
 document.querySelectorAll('.copyable').forEach(btn => {
   btn.addEventListener('click', () => {
