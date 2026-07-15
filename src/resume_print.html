@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>安冉 - 简历</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 210mm; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    color: #23262c;
+    font-size: 9.2pt;
+    line-height: 1.38;
+    padding: 6.5mm 11mm 3.5mm 11mm;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: #2f54b8; text-decoration: none; }
+
+  /* ===== Header ===== */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; }
+  .h-left { flex: 1; padding-right: 6mm; }
+  .name-row { display: flex; align-items: baseline; gap: 4mm; }
+  .name { font-size: 19.5pt; font-weight: 700; letter-spacing: 1.5px; color: #16181d; }
+  .artist { font-size: 8.8pt; color: #5a5f6b; }
+  .intent { margin-top: 1.4mm; font-size: 10.4pt; font-weight: 600; color: #2f54b8; }
+  .intent .city { font-weight: 400; color: #454a54; font-size: 9.2pt; }
+  .contact { margin-top: 1.2mm; font-size: 8.9pt; color: #454a54; }
+  .contact b { font-weight: 600; color: #23262c; }
+  .sep { color: #c3c8d4; margin: 0 1.5mm; }
+  .avail { margin-top: 1.4mm; font-size: 9.2pt; color: #23262c; font-weight: 600; }
+  .avail-tag {
+    display: inline-block; background: #2f54b8; color: #fff; font-size: 8pt; font-weight: 600;
+    padding: 0 1.8mm; border-radius: 0.9mm; margin-right: 2mm; vertical-align: 0.2mm;
+  }
+  .photo {
+    width: 20mm; height: 25.5mm; object-fit: cover; border-radius: 1.2mm;
+    border: 0.4mm solid #e2e6f2; flex-shrink: 0;
+  }
+
+  /* ===== Sections ===== */
+  .sec { margin-top: 2.3mm; }
+  .sec-t {
+    display: flex; align-items: center; gap: 2mm;
+    font-size: 10.2pt; font-weight: 700; color: #2f54b8;
+    padding-bottom: 0.7mm; border-bottom: 0.35mm solid #dfe4f2; margin-bottom: 1.15mm;
+  }
+  .sec-t::before {
+    content: ""; width: 1.3mm; height: 3.4mm; background: #2f54b8; border-radius: 0.4mm;
+  }
+
+  /* bullets */
+  ul { list-style: none; }
+  li { position: relative; padding-left: 3.4mm; margin-bottom: 0.5mm; }
+  li::before {
+    content: ""; position: absolute; left: 0.4mm; top: 0.5em;
+    width: 1.1mm; height: 1.1mm; background: #2f54b8; border-radius: 0.2mm;
+  }
+  li.sub::before { background: #b9c4e4; }
+
+  /* entries */
+  .entry { margin-bottom: 1.25mm; page-break-inside: avoid; }
+  .entry:last-child { margin-bottom: 0; }
+  .e-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4mm; }
+  .e-title { font-size: 9.7pt; font-weight: 700; color: #1c1f26; }
+  .role {
+    display: inline-block; margin-left: 1.8mm; padding: 0 1.7mm;
+    font-size: 8pt; font-weight: 600; color: #2f54b8;
+    background: #eef2fc; border-radius: 0.9mm; vertical-align: 0.15mm;
+  }
+  .e-note { font-size: 8.5pt; color: #6a7080; flex-shrink: 0; margin-left: 3mm; }
+  .lk { font-size: 8.4pt; white-space: nowrap; }
+
+  b, strong { font-weight: 600; }
+  .hl { font-weight: 600; color: #1c1f26; }
+  .num { font-weight: 700; color: #2f54b8; }
+
+  .todo {
+    background: #fff3d0; color: #96690f; border-radius: 0.8mm;
+    padding: 0 1.3mm; font-size: 8.5pt;
+  }
+
+  .pill {
+    font-size: 8pt; font-weight: 600; color: #2f54b8; background: #eef2fc;
+    padding: 0 2mm; border-radius: 2mm;
+  }
+
+  /* two-column bottom */
+  .cols { display: flex; gap: 7mm; }
+  .col-l { flex: 1.15; }
+  .col-r { flex: 1; }
+
+  /* footer works */
+  .works {
+    margin-top: 1.7mm; padding-top: 1.2mm; border-top: 0.35mm solid #dfe4f2;
+    font-size: 8.4pt; color: #454a54;
+  }
+  .works a { font-weight: 600; }
+  .works .sep { margin: 0 1.1mm; }
+</style>
+</head>
+<body>
+
+  <!-- ================= Header ================= -->
+  <div class="header">
+    <div class="h-left">
+      <div class="name-row">
+        <span class="name">安 冉</span>
+      </div>
+      <div class="intent">求职意向：AI 音乐产品 / AI 音乐应用<span class="city">&nbsp;&nbsp;意向城市：杭州 / 上海</span></div>
+      <div class="contact">
+        <b>电话</b> 19819509890<span class="sep">|</span><b>邮箱</b> 1378206785@qq.com<span class="sep">|</span>25 岁<span class="sep">|</span>新南威尔士大学硕士在读 · 2027 届
+      </div>
+      <div class="avail"><span class="avail-tag">到岗计划</span>2026.12 毕业回国 · 2027.01 起可全职长期实习 · 以转正为目标</div>
+    </div>
+    <img class="photo" src="data:image/jpeg;base64,__PHOTO_B64__" alt="证件照">
+  </div>
+
+  <!-- ================= 核心优势 ================= -->
+  <div class="sec">
+    <div class="sec-t">核心优势</div>
+    <ul>
+      <li><span class="hl">AI × 音乐复合背景：</span>新南威尔士大学硕士在读（2027 届），参与音乐流派分类等深度学习项目（10+ 方案对比、最优验证集准确率 92%+）；近 10 年作曲与制作经验，独立完成作曲、编曲、录音、混音全流程。</li>
+      <li><span class="hl">作品全平台可检索：</span>商业合作——电视剧《与卿书》片头曲《云舒》（作曲）、网易云「国风堂」企划《听闻》（合作三无MarBlue、Hanser，站内评论 <span class="num">4,100+</span>）；同人与官媒合作——《阴阳师》《鹅鸭杀》企划曲目、共青团中央 B 站官方账号发布《泽陂》（播放 <span class="num">35 万+</span>）。</li>
+      <li><span class="hl">创作 + 统筹双重视角：</span>多项目担任作曲 / 制作人 / 统筹 / 策划，协调歌曲全案多角色协作，包括词曲、演唱、混音、视觉等；多项游戏官方音乐大赛获奖；深度使用 Suno 等 AI 音乐工具并持续输出产品分析。</li>
+    </ul>
+  </div>
+
+  <!-- ================= 教育背景 ================= -->
+  <div class="sec">
+    <div class="sec-t">教育背景</div>
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">新南威尔士大学(UNSW Sydney)<span class="role">信息科技 · 硕士</span><span class="pill" style="margin-left:1.8mm">QS 世界大学排名前 20</span></span>
+        <span class="e-note">2025.02 – 2026.12（预计毕业）</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">中国计量大学<span class="role">信息管理与信息系统 · 本科</span></span>
+        <span class="e-note">2020.09 – 2024.06</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= AI 项目经历 ================= -->
+  <div class="sec">
+    <div class="sec-t">AI 项目经历</div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">基于深度学习的音乐流派分类系统<span class="role">Python / PyTorch / Librosa</span></span>
+        <span class="e-note">FMA-small · CCMusic 数据集</span>
+      </div>
+      <ul>
+        <li>负责音频预处理与 Mel Spectrogram 特征提取，搭建数据处理流程；基于 PyTorch 实现多层感知机（MLP）基线模型，参与卷积神经网络（CNN）训练与调参、实验结果整理与性能评估。</li>
+        <li>项目完成 <span class="num">10+</span> 种分类方案系统对比（传统机器学习 / CNN 系列 / 预训练音频模型）：其中预训练模型 AST 在 FMA-small 取得 Top-1 准确率 <span class="num">60.9%</span>、Top-3 准确率 <span class="num">86%+</span>，在 CCMusic 验证集准确率达 <span class="num">92%+</span>。</li>
+        <li>验证预训练音频模型在音乐分类任务中的优势，分析数据集特性对模型泛化能力的影响。</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">中文手写数字识别（卷积神经网络）<span class="role">Python / PyTorch / CNN</span></span>
+      </div>
+      <ul>
+        <li>负责 CNN 网络结构与超参数调整，结合实验结果迭代训练调优；通过准确率曲线与混淆矩阵评估分类效果、定位易混淆类别。</li>
+        <li>最终模型分类准确率达 <span class="num">94%+</span>，完成不同网络配置的实验对比与结果可视化。</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">遥感图像语义分割（多模型对比实验）<span class="role">Python / PyTorch</span></span>
+        <span class="e-note">U-Net · FPN · DeepLabV3 · PSPNet</span>
+      </div>
+      <ul>
+        <li>参与实验设计与模型调参：对 U-Net、FPN、DeepLabV3、PSPNet 等语义分割模型及多种骨干网络（VGG16、ResNet18、EfficientNet、MobileNetV2）进行系统对比，比较模型精度与训练效率。</li>
+        <li>结合交并比(IoU)、损失值(Loss)等指标评估模型表现，参与项目论文撰写，为遥感图像分割任务的模型选型提供参考。</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">AI 音乐工具实践与产品分析<span class="role">Suno 等</span></span>
+      </div>
+      <ul>
+        <li>持续体验 AI 做歌产品（旋律延续、风格探索、人声处理等），结合制作经验从创作者视角输出创作流程与用户体验分析。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================= 音乐作品与项目经历 ================= -->
+  <div class="sec">
+    <div class="sec-t">音乐作品与项目经历</div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">电视剧《与卿书》片头曲《云舒》<span class="role">作曲</span></span>
+        <span class="e-note">2023.02 全平台发行</span>
+      </div>
+      <ul>
+        <li>承接剧方委托，完成片头曲旋律创作；由印子月演唱，QQ 音乐 / 网易云等全平台上线，百度百科可查署名。<a class="lk" href="https://y.qq.com/n/ryqq/songDetail/000zc8vi2ja74d">【试听】</a></li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">网易云音乐「国风堂」独家企划 ——《听闻》《侠想》<span class="role">制作</span></span>
+        <span class="e-note">网易云独家收录</span>
+      </div>
+      <ul>
+        <li>制作《听闻》（合作歌手：三无MarBlue、Hanser），站内评论 <span class="num">4,100+</span>；统筹词曲、演唱、混音多方协作，按企划节点交付。<a class="lk" href="https://music.163.com/song?id=1398451964">【试听】</a></li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">共青团中央 ×「如果诗经会唱歌」——《泽陂》<span class="role">制作</span></span>
+        <span class="e-note">B 站官方账号发布</span>
+      </div>
+      <ul>
+        <li>与共青团中央 B 站官方账号合作发布诗经主题曲目，播放 <span class="num">35 万+</span>、点赞 <span class="num">2.1 万+</span>。<a class="lk" href="https://www.bilibili.com/video/BV1g5411Y72G">【观看】</a></li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">游戏 IP 同人企划<span class="role">作曲 / 制作 / 策划</span></span>
+      </div>
+      <ul>
+        <li>网易《阴阳师》企划曲《终焉之刻》、《鹅鸭杀 Goose Goose Duck》合作曲目、《天涯咫尺》（燕云十六声题材）等，均已上线音乐平台。</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="e-head">
+        <span class="e-title">创作者协作 · 社群实践<span class="role">统筹 / 运营</span></span>
+      </div>
+      <ul>
+        <li>长期与歌手、音乐制作人及游戏 / 影视公司保持合作，理解创作链路中不同角色的需求与协作模式。</li>
+        <li>参与音乐社群运营与线上活动组织，开展直播与音乐内容创作，积累用户交流与表达沟通经验。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================= 荣誉奖项 + 专业技能 ================= -->
+  <div class="sec">
+    <div class="cols">
+      <div class="col-l">
+        <div class="sec-t">专业技能</div>
+        <ul>
+          <li><span class="hl">编程与 AI：</span>Python、PyTorch、Librosa；了解 C++/Java/SQL</li>
+          <li><span class="hl">音乐制作：</span>作曲 / 和声曲式；Studio One 录音 / 混音</li>
+          <li><span class="hl">AI 音乐工具：</span>Suno 等，覆盖写歌全流程场景</li>
+        </ul>
+      </div>
+      <div class="col-r">
+        <div class="sec-t">荣誉奖项</div>
+        <ul>
+          <li>《燕云十六声》同人音乐大赛<span class="num">第二名</span>·《天涯咫尺》制作</li>
+          <li>《忘川风华录》音乐征集<span class="num">第二名</span>·《问太平》作曲/制作</li>
+          <li>《阴阳师》大触觉醒大赛<span class="num">第三名</span>·《沾红之网》作曲/制作</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 作品链接 ================= -->
+  <div class="works">
+    部分代表作直达：
+    网易云 <a href="https://music.163.com/song?id=1398451964">《听闻》</a><a href="https://music.163.com/song?id=2090661117">《终焉之刻》</a><a href="https://music.163.com/song?id=2740134559">《天涯咫尺》</a><span class="sep">·</span>QQ 音乐 <a href="https://y.qq.com/n/ryqq/songDetail/000zc8vi2ja74d">《云舒》</a><a href="https://y.qq.com/n/ryqq/songDetail/002vGImT0TIwNb">《Goose Goose Duck》</a><span class="sep">·</span>B 站 <a href="https://www.bilibili.com/video/BV1g5411Y72G">《泽陂》</a>
+  </div>
+
+</body>
+</html>

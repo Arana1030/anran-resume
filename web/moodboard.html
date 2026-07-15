@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安冉简历 · 风格 Moodboard（按 1-5 切换）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Noto Serif SC', serif;
+    --sans: 'Noto Sans SC', sans-serif;
+  }
+
+  /* ================= 五套主题 TOKEN ================= */
+  /* A 鎏金夜航 · 黑金提亮版 */
+  body.t-a {
+    --bg: #14100C; --surface: rgba(255,240,214,0.045);
+    --ink: #F2EADA; --dim: #A89A82;
+    --acc: #E4B96E; --acc-hi: #F4DCA8; --acc2: #C6432F;
+    --line: rgba(228,185,110,0.30); --grid: rgba(228,185,110,0.07);
+    --glow1: rgba(228,185,110,0.20); --glow2: rgba(198,67,47,0.10);
+    --particle: 226,190,130; --card-bd: rgba(228,185,110,0.28);
+    --title-font: var(--serif); --body-font: var(--serif);
+  }
+  /* B 宣纸墨金 · 暖白亮色 */
+  body.t-b {
+    --bg: #F4EEE1; --surface: rgba(43,35,24,0.035);
+    --ink: #2B2318; --dim: #7A6E5B;
+    --acc: #9C7534; --acc-hi: #7A5A22; --acc2: #B3342E;
+    --line: rgba(122,90,34,0.35); --grid: rgba(90,72,45,0.08);
+    --glow1: rgba(212,175,110,0.30); --glow2: rgba(179,52,46,0.08);
+    --particle: 150,120,70; --card-bd: rgba(122,90,34,0.30);
+    --title-font: var(--serif); --body-font: var(--serif);
+  }
+  /* C 青瓷鎏金 · 深青绿 */
+  body.t-c {
+    --bg: #12211E; --surface: rgba(214,232,222,0.05);
+    --ink: #E7EFE8; --dim: #93A79C;
+    --acc: #D8B36A; --acc-hi: #EFD9A5; --acc2: #C6432F;
+    --line: rgba(216,179,106,0.30); --grid: rgba(190,220,205,0.06);
+    --glow1: rgba(216,179,106,0.16); --glow2: rgba(66,120,100,0.22);
+    --particle: 205,220,190; --card-bd: rgba(216,179,106,0.28);
+    --title-font: var(--serif); --body-font: var(--serif);
+  }
+  /* D 玄青终端 · 蓝黑科技 */
+  body.t-d {
+    --bg: #0A0F1C; --surface: rgba(140,190,255,0.05);
+    --ink: #E8EDF6; --dim: #8A96AC;
+    --acc: #5FD4C4; --acc-hi: #9AEBDF; --acc2: #E4B96E;
+    --line: rgba(95,212,196,0.32); --grid: rgba(95,212,196,0.07);
+    --glow1: rgba(95,212,196,0.14); --glow2: rgba(228,185,110,0.10);
+    --particle: 140,220,205; --card-bd: rgba(95,212,196,0.28);
+    --title-font: var(--serif); --body-font: var(--sans);
+  }
+  /* E 月白极简 · 现代国风 */
+  body.t-e {
+    --bg: #F7F6F2; --surface: rgba(20,20,20,0.03);
+    --ink: #1A1A1A; --dim: #6E6E6A;
+    --acc: #B3342E; --acc-hi: #8F241F; --acc2: #9C7534;
+    --line: rgba(26,26,26,0.22); --grid: rgba(26,26,26,0.055);
+    --glow1: rgba(179,52,46,0.07); --glow2: rgba(156,117,52,0.08);
+    --particle: 120,120,116; --card-bd: rgba(26,26,26,0.16);
+    --title-font: var(--serif); --body-font: var(--sans);
+  }
+
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--body-font);
+    min-height: 100vh; overflow-x: hidden;
+    transition: background 0.5s, color 0.5s;
+  }
+
+  /* ================= 背景层 ================= */
+  #dust { position: fixed; inset: 0; z-index: 0; }
+  .nebula { position: fixed; z-index: 0; pointer-events: none; border-radius: 50%; will-change: transform; }
+  .n1 { width: 62vmax; height: 62vmax; top: -20vmax; right: -16vmax;
+        background: radial-gradient(circle, var(--glow1) 0%, transparent 65%); }
+  .n2 { width: 46vmax; height: 46vmax; bottom: -18vmax; left: -12vmax;
+        background: radial-gradient(circle, var(--glow2) 0%, transparent 65%); }
+  .grid-bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 95% 85% at 50% 35%, black 25%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 35%, black 25%, transparent 78%);
+  }
+
+  /* ================= 主题切换器 ================= */
+  .switch {
+    position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; gap: 6px;
+    background: rgba(0,0,0,0.35); backdrop-filter: blur(10px);
+    padding: 6px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);
+  }
+  body.t-b .switch, body.t-e .switch { background: rgba(255,255,255,0.5); border-color: rgba(0,0,0,0.12); }
+  .switch button {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em;
+    padding: 7px 12px; border-radius: 5px; border: 1px solid transparent;
+    background: transparent; color: inherit; cursor: pointer; opacity: 0.65;
+  }
+  .switch button.on { opacity: 1; border-color: var(--acc); color: var(--acc); }
+
+  /* ================= 舞台 ================= */
+  .stage {
+    position: relative; z-index: 1;
+    max-width: 1240px; margin: 0 auto;
+    padding: 84px clamp(24px, 5vw, 64px) 60px;
+    display: grid; grid-template-columns: 1.25fr 1fr;
+    gap: clamp(24px, 4vw, 64px); align-items: center;
+  }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+    color: var(--acc); border: 1px solid var(--line);
+    padding: 6px 14px; border-radius: 3px; margin-bottom: 26px;
+  }
+  .tag::before { content: ''; width: 6px; height: 6px; background: var(--acc2); border-radius: 1px; }
+
+  h1 {
+    font-family: var(--title-font); font-weight: 900;
+    font-size: clamp(48px, 6.5vw, 88px); letter-spacing: 0.08em; line-height: 1.05;
+    display: flex; align-items: center; gap: 22px;
+  }
+  h1 .dot { color: var(--acc); }
+
+  /* 玉玺印章（占位形制：正式版将用篆书字形/SVG 描摹） */
+  .seal {
+    width: 72px; height: 72px; flex-shrink: 0;
+    background: var(--acc2); border-radius: 8px;
+    box-shadow: 0 6px 26px color-mix(in srgb, var(--acc2) 40%, transparent),
+                inset 0 0 0 2.5px rgba(245,239,227,0.85),
+                inset 0 0 0 6px var(--acc2),
+                inset 0 0 0 7px rgba(245,239,227,0.45);
+    display: grid; place-items: center;
+    transform: rotate(2deg);
+  }
+  .seal span {
+    color: #F5EFE3; font-family: var(--serif); font-weight: 900;
+    writing-mode: vertical-rl; letter-spacing: 6px;
+    font-size: 17px; line-height: 1;
+  }
+
+  .sub { margin-top: 20px; font-size: clamp(14px, 1.35vw, 17px); color: var(--dim); letter-spacing: 0.05em; line-height: 1.95; }
+  .sub b { color: var(--ink); font-weight: 600; }
+
+  .metrics { display: flex; gap: clamp(18px, 2.6vw, 40px); flex-wrap: wrap; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .m .v { font-family: var(--mono); font-weight: 600; font-size: clamp(20px, 2.2vw, 30px); color: var(--acc); }
+  .m .v small { font-size: 0.55em; opacity: 0.7; margin-left: 2px; }
+  .m .k { margin-top: 5px; font-size: 11px; letter-spacing: 0.2em; color: var(--dim); }
+
+  /* ================= 唱片 + 波形 ================= */
+  .deck { display: grid; place-items: center; gap: 18px; }
+  .vinyl {
+    position: relative; width: clamp(200px, 21vw, 290px); height: clamp(200px, 21vw, 290px); border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(0,0,0,0.55) 0 26%, transparent 26%),
+      repeating-radial-gradient(circle at 50% 50%, rgba(20,16,12,0.95) 0 2px, rgba(8,6,5,0.95) 2px 4px);
+    box-shadow: 0 0 0 1px var(--line), 0 22px 70px rgba(0,0,0,0.45),
+                0 0 80px color-mix(in srgb, var(--acc) 14%, transparent);
+    animation: spin 9s linear infinite;
+  }
+  body.t-b .vinyl, body.t-e .vinyl { box-shadow: 0 0 0 1px var(--line), 0 18px 50px rgba(30,24,12,0.25); }
+  .vinyl::after {
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+    background: conic-gradient(from 210deg, transparent 0 70%, rgba(255,255,255,0.10) 78%, transparent 86%);
+  }
+  .label {
+    position: absolute; inset: 0; margin: auto; width: 34%; height: 34%; border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--acc) 28%, #14100C) 0 58%, #17120E 58% 100%);
+    border: 1px solid var(--line); display: grid; place-items: center; text-align: center;
+  }
+  .label .t { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--acc-hi); letter-spacing: 0.2em; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* 音频波形（音乐 × 科技的桥梁元素） */
+  .wave { display: flex; align-items: flex-end; gap: 3px; height: 26px; }
+  .wave i { width: 3px; background: var(--acc); border-radius: 2px; animation: wv 1.1s ease-in-out infinite; }
+  @keyframes wv { 0%,100% { height: 22%; } 50% { height: 100%; } }
+  .cap { font-family: var(--mono); font-size: 11px; letter-spacing: 0.26em; color: var(--dim); display: flex; align-items: center; gap: 12px; }
+  .cap em { color: var(--acc); font-style: normal; }
+
+  /* ================= 正文样张（判断长文可读性） ================= */
+  .body-sample {
+    position: relative; z-index: 1;
+    max-width: 1240px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 64px) 80px;
+  }
+  .sec-t {
+    display: flex; align-items: baseline; gap: 14px;
+    font-family: var(--title-font); font-size: 22px; font-weight: 900; letter-spacing: 0.1em;
+    padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 18px;
+  }
+  .sec-t .en { font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.3em; color: var(--dim); }
+  .sec-t::before { content: ''; width: 5px; height: 20px; background: var(--acc); border-radius: 2px; align-self: center; }
+  .card {
+    background: var(--surface); border: 1px solid var(--card-bd); border-radius: 10px;
+    padding: 22px 26px; max-width: 760px;
+  }
+  .card .ct { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 16.5px; }
+  .role {
+    font-family: var(--mono); font-size: 10.5px; color: var(--acc);
+    border: 1px solid var(--line); padding: 2px 9px; border-radius: 3px; letter-spacing: 0.1em;
+  }
+  .card p { margin-top: 10px; color: var(--dim); font-size: 14px; line-height: 1.95; }
+  .card p b { color: var(--ink); font-weight: 600; }
+  .card .links { margin-top: 12px; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; }
+  .card .links a { color: var(--acc); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
+
+  .note {
+    position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 10;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; color: var(--dim); opacity: 0.85;
+  }
+</style>
+</head>
+<body class="t-a">
+
+<canvas id="dust"></canvas>
+<div class="nebula n1" data-depth="0.03"></div>
+<div class="nebula n2" data-depth="0.018"></div>
+<div class="grid-bg"></div>
+
+<nav class="switch" id="switch">
+  <button data-t="t-a">1 鎏金夜航</button>
+  <button data-t="t-b">2 宣纸墨金</button>
+  <button data-t="t-c">3 青瓷鎏金</button>
+  <button data-t="t-d">4 玄青终端</button>
+  <button data-t="t-e">5 月白极简</button>
+</nav>
+
+<div class="stage">
+  <div>
+    <div class="tag">AI × MUSIC — OPERATION / PRODUCT / APPLICATION</div>
+    <h1>安冉<span class="dot">。</span><span class="seal"><span>萧冉紫</span></span></h1>
+    <p class="sub">
+      <b>AI 音乐运营 / 产品 / 应用</b> · 新南威尔士大学 AI 方向硕士（2027 届）<br>
+      近十年作曲与制作 · 商业作品全平台上线 · 懂创作者，也懂模型
+    </p>
+    <div class="metrics">
+      <div class="m"><div class="v">350,000<small>+</small></div><div class="k">泽陂 · B站播放</div></div>
+      <div class="m"><div class="v">4,100<small>+</small></div><div class="k">听闻 · 网易云评论</div></div>
+      <div class="m"><div class="v">92<small>%+</small></div><div class="k">流派分类 · 验证集</div></div>
+      <div class="m"><div class="v">10<small>YRS</small></div><div class="k">作曲与制作</div></div>
+    </div>
+  </div>
+  <div class="deck">
+    <div class="vinyl"><div class="label"><div class="t">听 闻</div></div></div>
+    <div class="cap">
+      <span class="wave"><i style="animation-delay:0s"></i><i style="animation-delay:.15s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.45s"></i><i style="animation-delay:.6s"></i><i style="animation-delay:.22s"></i><i style="animation-delay:.5s"></i></span>
+      NOW PLAYING — <em>网易云 · 国风堂企划</em>
+    </div>
+  </div>
+</div>
+
+<div class="body-sample">
+  <div class="sec-t">音乐作品与项目经历 <span class="en">SELECTED WORKS</span></div>
+  <div class="card">
+    <div class="ct">电视剧《与卿书》片头曲《云舒》 <span class="role">作曲 / COMPOSER</span></div>
+    <p>承接剧方委托，完成片头曲旋律创作；由<b>印子月</b>演唱，QQ 音乐 / 网易云等全平台上线，<b>百度百科可查署名</b>。2023.02 全平台发行。</p>
+    <div class="links"><a href="#">LISTEN ON QQ MUSIC ↗</a></div>
+  </div>
+</div>
+
+<div class="note">MOODBOARD — 按数字键 1-5 或点击顶部切换主题 · 布局与内容五套共用，仅 token 不同</div>
+
+<script>
+/* ===== 主题切换 ===== */
+const THEMES = ['t-a','t-b','t-c','t-d','t-e'];
+const sw = document.getElementById('switch');
+function setTheme(t) {
+  document.body.className = t;
+  [...sw.children].forEach(b => b.classList.toggle('on', b.dataset.t === t));
+  refreshParticleColor();
+}
+sw.addEventListener('click', e => { if (e.target.dataset.t) setTheme(e.target.dataset.t); });
+addEventListener('keydown', e => { const i = parseInt(e.key) - 1; if (THEMES[i]) setTheme(THEMES[i]); });
+const hash = (location.hash || '').replace('#','');
+setTheme(THEMES.includes('t-' + hash) ? 't-' + hash : 't-a');
+
+/* ===== 粒子 + 视差（颜色随主题） ===== */
+const cv = document.getElementById('dust'), cx = cv.getContext('2d');
+let W, H, P = [], pcol = '226,190,130';
+const DPR = Math.min(devicePixelRatio || 1, 2);
+function refreshParticleColor() {
+  pcol = getComputedStyle(document.body).getPropertyValue('--particle').trim() || pcol;
+}
+function resize() {
+  W = cv.width = innerWidth * DPR; H = cv.height = innerHeight * DPR;
+  cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+}
+resize(); addEventListener('resize', resize);
+for (let i = 0; i < 110; i++) {
+  const depth = 0.25 + Math.random() * 0.75;
+  P.push({ x: Math.random(), y: Math.random(), r: (0.4 + Math.random() * 1.4) * depth,
+    a: 0.10 + Math.random() * 0.45 * depth,
+    vx: (Math.random() - 0.5) * 0.00006, vy: -0.00003 - Math.random() * 0.00007,
+    tw: Math.random() * Math.PI * 2, depth });
+}
+let mx = 0.5, my = 0.5, sx = 0.5, sy = 0.5;
+addEventListener('mousemove', e => { mx = e.clientX / innerWidth; my = e.clientY / innerHeight; });
+const nebs = document.querySelectorAll('.nebula');
+function tick() {
+  sx += (mx - sx) * 0.04; sy += (my - sy) * 0.04;
+  cx.clearRect(0, 0, W, H);
+  for (const p of P) {
+    p.x += p.vx; p.y += p.vy; p.tw += 0.02;
+    if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+    if (p.x < -0.02) p.x = 1.02; if (p.x > 1.02) p.x = -0.02;
+    const px = (p.x + (sx - 0.5) * 0.045 * p.depth) * W;
+    const py = (p.y + (sy - 0.5) * 0.045 * p.depth) * H;
+    cx.beginPath();
+    cx.arc(px, py, p.r * DPR, 0, 7);
+    cx.fillStyle = `rgba(${pcol},${p.a * (0.65 + 0.35 * Math.sin(p.tw))})`;
+    cx.fill();
+  }
+  nebs.forEach(n => {
+    const d = parseFloat(n.dataset.depth);
+    n.style.transform = `translate(${(sx - 0.5) * -100 * d}vmax, ${(sy - 0.5) * -60 * d}vmax)`;
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+</script>
+
+</body>
+</html>

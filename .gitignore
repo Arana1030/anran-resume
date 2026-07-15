@@ -1,0 +1,6 @@
+# 可重建的本地环境与缓存(重建方法见 README)
+src/.venv/
+src/.hsprof/
+__pycache__/
+*.pyc
+.DS_Store

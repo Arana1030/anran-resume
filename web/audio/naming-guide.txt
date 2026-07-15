@@ -1,0 +1,10 @@
+本地音频文件 —— 六首全部本地播放(整站单一音源,首页/作品页共用):
+
+  tingwen.mp3   听闻       ✓
+  zebei.m4a     泽陂       ✓
+  zhongyan.mp3  终焉之刻    ✓
+  tianya.mp3    天涯咫尺    ✓
+  yunshu.mp3    云舒       ✓(用户提供,320kbps)
+  ggd.mp3       鹅鸭杀      ← 待用户放入(QQ音乐 DRM,需自备)
+
+放入 ggd.mp3 后作品页六首即全部本地试听。封面在 ../cover/。
