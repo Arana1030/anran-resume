@@ -377,6 +377,16 @@ body.gated { overflow: hidden; }
 .pb-knob { position: absolute; top: 50%; left: 0; width: 13px; height: 13px; border-radius: 50%; background: #fff;
   box-shadow: 0 0 9px rgba(95,212,196,0.7); transform: translate(-50%,-50%); opacity: 0; transition: opacity .2s; pointer-events: none; }
 .pb-track:hover .pb-knob, .pb-track.dragging .pb-knob { opacity: 1; }
+.pb-vol { display: none; align-items: center; gap: 8px; flex-shrink: 0; }
+body.slides .pb-vol { display: flex; }   /* 音量控制仅 web 端 */
+.pb-vol-ico { width: 30px; height: 30px; display: grid; place-items: center; background: transparent; border: none;
+  color: var(--dim); cursor: pointer; transition: color .2s; }
+.pb-vol-ico:hover { color: var(--acc); }
+.pb-vol-ico .icon { font-size: 17px; }
+.pb-vol-ico .i-voff { display: none; }
+.pb-vol.muted .i-von { display: none; }
+.pb-vol.muted .i-voff { display: block; }
+.pb-vol .vol-track { flex: 0 0 84px; }
 .pb-orn { flex-shrink: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 3px; opacity: 0.8; }
 .pb-orn i { width: 3px; height: 8px; border-radius: 1.5px; background: linear-gradient(var(--gold-hi), var(--gold)); transition: height .3s; }
 .player-bar.playing .pb-orn i { animation: wv 1.05s ease-in-out infinite; height: 16px; }
@@ -1443,6 +1453,10 @@ body.mslides .vnav { display: grid; transition: opacity .25s; }
     <div class="pb-track" id="pbTrack"><div class="pb-fill" id="pbFill"></div><div class="pb-knob" id="pbKnob"></div></div>
     <span class="pb-time" id="pbDur">00:00</span>
   </div>
+  <div class="pb-vol" aria-label="音量">
+    <button class="pb-vol-ico" id="pbVolIco" aria-label="静音切换"><svg class="icon i-von" viewBox="0 0 24 24"><path d="M4 9.5v5h3.4L12 18.6V5.4L7.4 9.5H4z"/><path d="M14.5 8.6a4.4 4.4 0 0 1 0 6.8l-1-1.2a2.9 2.9 0 0 0 0-4.4l1-1.2z"/><path d="M16.4 6a7.6 7.6 0 0 1 0 12l-1-1.2a6 6 0 0 0 0-9.6l1-1.2z"/></svg><svg class="icon i-voff" viewBox="0 0 24 24"><path d="M4 9.5v5h3.4L12 18.6V5.4L7.4 9.5H4z"/><path d="m20.2 9-1.4-1.4-2.1 2.1-2.1-2.1-1.4 1.4 2.1 2.1-2.1 2.1 1.4 1.4 2.1-2.1 2.1 2.1 1.4-1.4-2.1-2.1z"/></svg></button>
+    <div class="pb-track vol-track" id="volTrack"><div class="pb-fill" id="volFill"></div><div class="pb-knob" id="volKnob"></div></div>
+  </div>
   <div class="pb-orn" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 </footer>
 
@@ -1921,6 +1935,36 @@ function bindSeek(bar) {
   });
 }
 bindSeek(seekbar); bindSeek(pbTrack);
+/* 音量控制(仅桌面显示;不持久化,避免"静音残留"类问题) */
+const volWrap = document.querySelector('.pb-vol'), volTrack = document.getElementById('volTrack'),
+      volFill = document.getElementById('volFill'), volKnob = document.getElementById('volKnob'),
+      volIco = document.getElementById('pbVolIco');
+let lastVol = 1;
+function setVol(v) {
+  v = Math.max(0, Math.min(1, v));
+  trackAudio.volume = v;
+  if (volFill) { volFill.style.width = v * 100 + '%'; volKnob.style.left = v * 100 + '%'; }
+  if (volWrap) volWrap.classList.toggle('muted', v === 0);
+}
+if (volTrack) {
+  let volDrag = false;
+  volTrack.addEventListener('pointerdown', e => {
+    volDrag = true; volTrack.classList.add('dragging');
+    try { volTrack.setPointerCapture(e.pointerId); } catch (_) {}
+    setVol(pctOf(volTrack, e.clientX));
+  });
+  volTrack.addEventListener('pointermove', e => { if (volDrag) setVol(pctOf(volTrack, e.clientX)); });
+  volTrack.addEventListener('pointerup', e => {
+    if (!volDrag) return; volDrag = false; volTrack.classList.remove('dragging');
+    setVol(pctOf(volTrack, e.clientX));
+    if (trackAudio.volume > 0) lastVol = trackAudio.volume;
+  });
+  if (volIco) volIco.addEventListener('click', () => {
+    if (trackAudio.volume > 0) { lastVol = trackAudio.volume; setVol(0); }
+    else { setVol(lastVol || 1); }
+  });
+  setVol(1);
+}
 let tx0 = null;
 disc.parentElement.addEventListener('touchstart', e => tx0 = e.touches[0].clientX, { passive: true });
 disc.parentElement.addEventListener('touchend', e => {
