@@ -169,7 +169,8 @@ body.slides .reveal { opacity: 1 !important; transform: none !important; }
 .metric .v { font-family: var(--mono); font-weight: 600; font-size: clamp(20px, 2vw, 27px); color: var(--acc); }
 .metric .v small { font-size: 0.55em; opacity: 0.7; }
 .metric .k { margin-top: 4px; font-size: 11.5px; letter-spacing: 0.06em; color: var(--dim); white-space: nowrap; }
-.vinyl { position: relative; width: clamp(190px, 20vw, 270px); height: clamp(190px, 20vw, 270px); border-radius: 50%;
+.vinyl { position: relative; will-change: transform;   /* 独立合成层:换碟面只重绘唱片自身,防分数缩放下宿主卡片 1px 边框重光栅跳动 */
+  width: clamp(190px, 20vw, 270px); height: clamp(190px, 20vw, 270px); border-radius: 50%;
   background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.55) 0 26%, transparent 26%),
               repeating-radial-gradient(circle at 50% 50%, rgba(18,22,30,0.95) 0 2px, rgba(6,8,12,0.95) 2px 4px);
   box-shadow: 0 0 0 1px var(--line-soft), 0 22px 70px rgba(0,0,0,0.5), 0 0 80px rgba(95,212,196,0.08);
