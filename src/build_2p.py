@@ -37,10 +37,8 @@ for old, new in reps:
 open(f'{sc}/resume_print_2p.html', 'w', encoding='utf-8').write(s)
 b64 = open(f'{sc}/photo_b64.txt').read().strip()
 open(f'{sc}/resume_final_2p.html', 'w', encoding='utf-8').write(s.replace('__PHOTO_B64__', b64))
-s2 = re.sub(r'\s*<img class="photo"[^>]*>', '', s)
-s2 = s2.replace('.h-left { flex: 1; padding-right: 6mm; }', '.h-left { flex: 1; padding-right: 0; }')
-assert 'class="photo"' not in s2
 from nophoto_header import rebalance_nophoto_header
-s2 = rebalance_nophoto_header(s2)
+s2 = rebalance_nophoto_header(s)
+assert 'class="photo"' not in s2
 open(f'{sc}/resume_final_2p_nophoto.html', 'w', encoding='utf-8').write(s2)
 print('2p variants built')

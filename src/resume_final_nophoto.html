@@ -21,7 +21,7 @@
 
   /* ===== Header ===== */
   .header { display: flex; justify-content: space-between; align-items: flex-start; }
-  .h-left { flex: 1; padding-right: 0; }
+  .h-left { flex: 1; padding-right: 6mm; }
   .name-row { display: flex; align-items: baseline; gap: 4mm; }
   .name { font-size: 19.5pt; font-weight: 700; letter-spacing: 1.5px; color: #16181d; }
   .artist { font-size: 8.8pt; color: #5a5f6b; }
@@ -39,11 +39,13 @@
     width: 20mm; height: 25.5mm; object-fit: cover; border-radius: 1.2mm;
     border: 0.4mm solid #e2e6f2; flex-shrink: 0;
   }
-  /* 无照片版:抬头整体居中,每行左右留白对称(有照片版用不到) */
-  .header.nh { display: block; text-align: center; }
-  .header.nh .h-left { padding-right: 0; }
-  .header.nh .name-row { justify-content: center; }
-  .header.nh .intent { margin-top: 2mm; }
+  /* 无照片版:按信息逻辑分组的通栏版头(有照片版用不到) */
+  .header.nh { display: block; }
+  .header.nh .hx-top { display: flex; justify-content: space-between; align-items: baseline; gap: 6mm; }
+  .header.nh .hx-rule { border-top: 0.3mm solid #dfe4f2; margin: 2.8mm 0; }
+  .header.nh .hx-line { font-size: 8.9pt; color: #454a54; margin-top: 1.6mm; }
+  .header.nh .hx-line:first-of-type { margin-top: 0; }
+  .header.nh .hx-line b { color: #23262c; font-weight: 600; }
 
   /* ===== Sections ===== */
   .sec { margin-top: 1.9mm; }
@@ -110,16 +112,12 @@
 
   <!-- ================= Header ================= -->
   <div class="header nh">
-    <div class="h-left">
-      <div class="name-row">
-        <span class="name">安 冉</span>
-      </div>
-      <div class="intent">求职意向：AI 音乐产品 / AI 音乐应用<span class="city">&nbsp;&nbsp;意向城市：杭州 / 上海</span></div>
-      <div class="contact">
-        <b>电话</b> 19818509890<span class="sep">|</span><b>邮箱</b> 1378206785@qq.com<span class="sep">|</span>25 岁<span class="sep">|</span>新南威尔士大学硕士在读
-      </div>
-      <div class="avail"><span class="avail-tag">作品站</span><a class="lk" href="https://arana1030.github.io/anran-resume/">arana1030.github.io/anran-resume</a> · 备用 <a class="lk" href="https://anran-resume-musical.netlify.app">anran-resume-musical.netlify.app</a></div>
-      <div class="avail"><span class="avail-tag">到岗计划</span>2027.01 起可全职长期实习 · 以转正为目标</div>
+    <div class="hx">
+      <div class="hx-top"><span class="name">安 冉</span><span class="intent">求职意向：AI 音乐产品 / AI 音乐应用</span></div>
+      <div class="hx-rule"></div>
+      <div class="hx-line"><b>电话</b> 19818509890<span class="sep">·</span><b>邮箱</b> 1378206785@qq.com<span class="sep">·</span>25 岁<span class="sep">·</span>新南威尔士大学硕士在读</div>
+      <div class="hx-line"><span class="avail-tag">到岗计划</span>2027.01 起可全职长期实习 · 以转正为目标<span class="sep">·</span><b>意向城市</b> 杭州 / 上海</div>
+      <div class="hx-line"><span class="avail-tag">作品站</span><a class="lk" href="https://arana1030.github.io/anran-resume/">arana1030.github.io/anran-resume</a> · 备用 <a class="lk" href="https://anran-resume-musical.netlify.app">anran-resume-musical.netlify.app</a></div>
     </div>
   </div>
 

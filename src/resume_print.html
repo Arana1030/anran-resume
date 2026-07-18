@@ -39,11 +39,13 @@
     width: 20mm; height: 25.5mm; object-fit: cover; border-radius: 1.2mm;
     border: 0.4mm solid #e2e6f2; flex-shrink: 0;
   }
-  /* 无照片版:抬头整体居中,每行左右留白对称(有照片版用不到) */
-  .header.nh { display: block; text-align: center; }
-  .header.nh .h-left { padding-right: 0; }
-  .header.nh .name-row { justify-content: center; }
-  .header.nh .intent { margin-top: 2mm; }
+  /* 无照片版:按信息逻辑分组的通栏版头(有照片版用不到) */
+  .header.nh { display: block; }
+  .header.nh .hx-top { display: flex; justify-content: space-between; align-items: baseline; gap: 6mm; }
+  .header.nh .hx-rule { border-top: 0.3mm solid #dfe4f2; margin: 2.8mm 0; }
+  .header.nh .hx-line { font-size: 8.9pt; color: #454a54; margin-top: 1.6mm; }
+  .header.nh .hx-line:first-of-type { margin-top: 0; }
+  .header.nh .hx-line b { color: #23262c; font-weight: 600; }
 
   /* ===== Sections ===== */
   .sec { margin-top: 1.9mm; }
