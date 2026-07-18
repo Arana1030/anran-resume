@@ -17,8 +17,17 @@ def rebalance_nophoto_header(html):
     objective = im.group(1).strip()                       # 求职意向：AI 音乐产品 / AI 音乐应用
     city = im.group(2).strip()                            # 意向城市：杭州 / 上海
     contact = re.search(r'<div class="contact">\s*(.*?)\s*</div>', html, re.S).group(1).strip()
-    works = re.search(r'<div class="avail"><span class="avail-tag">作品站</span>(.*?)</div>', html).group(1).strip()
+    works_raw = re.search(r'<div class="avail"><span class="avail-tag">作品站</span>(.*?)</div>', html).group(1).strip()
     hire = re.search(r'<div class="avail"><span class="avail-tag">到岗计划</span>(.*?)</div>', html).group(1).strip()
+    # 作品站主/备用网址过长 → 改「外链图标+文字超链接」(网址藏在链接里,更显眼、不占版面)
+    ICON = ('<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v2h3.59l-9.83 9.83 '
+            '1.41 1.41L19 6.41V10h2V3h-7z M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 '
+            '2-.9 2-2v-7h-2v7z"/></svg>')
+    hrefs = re.findall(r'href="([^"]+)"', works_raw)
+    texts = re.findall(r'<a[^>]*>([^<]+)</a>', works_raw)     # [主站网址, 备用网址]
+    works = ('<a class="lk" href="' + hrefs[0] + '">' + texts[0] + '</a>'
+             '<span class="sep">·</span>备用 <a class="lk" href="' + hrefs[1] + '">' + ICON + '镜像</a>') \
+        if len(hrefs) >= 2 else works_raw
     # 联系行分隔符 | → ·(与版头其余行统一)
     contact = contact.replace('<span class="sep">|</span>', '<span class="sep">·</span>')
     # 意向城市拆「标签 值」
@@ -30,10 +39,10 @@ def rebalance_nophoto_header(html):
         '      <div class="hx-top"><span class="name">安 冉</span>'
         '<span class="intent">' + objective + '</span></div>\n'
         '      <div class="hx-rule"></div>\n'
-        '      <div class="hx-line">' + contact + '</div>\n'
-        '      <div class="hx-line"><span class="avail-tag">到岗计划</span>' + hire +
+        '      <div class="hx-line">' + contact +
         '<span class="sep">·</span><b>' + clabel + '</b> ' + cval + '</div>\n'
-        '      <div class="hx-line"><span class="avail-tag">作品站</span>' + works + '</div>\n'
+        '      <div class="hx-line"><span class="avail-tag">到岗计划</span>' + hire +
+        '<span class="sep">·</span><span class="avail-tag">作品站</span>' + works + '</div>\n'
         '    </div>\n'
         '  </div>'
     )
