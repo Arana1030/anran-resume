@@ -40,5 +40,7 @@ open(f'{sc}/resume_final_2p.html', 'w', encoding='utf-8').write(s.replace('__PHO
 s2 = re.sub(r'\s*<img class="photo"[^>]*>', '', s)
 s2 = s2.replace('.h-left { flex: 1; padding-right: 6mm; }', '.h-left { flex: 1; padding-right: 0; }')
 assert 'class="photo"' not in s2
+from nophoto_header import rebalance_nophoto_header
+s2 = rebalance_nophoto_header(s2)
 open(f'{sc}/resume_final_2p_nophoto.html', 'w', encoding='utf-8').write(s2)
 print('2p variants built')

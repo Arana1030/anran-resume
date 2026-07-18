@@ -11,12 +11,15 @@ cd "$DIR"
 
 # 1. 注入照片 → 一页版两个渲染源
 python3 - <<'EOF'
-import re
+import re, sys
+sys.path.insert(0, '.')
+from nophoto_header import rebalance_nophoto_header
 s = open('resume_print.html', encoding='utf-8').read()
 b64 = open('photo_b64.txt').read().strip()
 open('resume_final.html', 'w', encoding='utf-8').write(s.replace('__PHOTO_B64__', b64))
 s2 = re.sub(r'\s*<img class="photo"[^>]*>', '', s).replace(
     '.h-left { flex: 1; padding-right: 6mm; }', '.h-left { flex: 1; padding-right: 0; }')
+s2 = rebalance_nophoto_header(s2)
 open('resume_final_nophoto.html', 'w', encoding='utf-8').write(s2)
 print('  一页版渲染源已生成')
 EOF
