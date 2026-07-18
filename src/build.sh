@@ -48,5 +48,5 @@ done
 echo "BUILD OK -> $OUT"
 
 # 6. 同步网页版下载用 PDF
-cp "$OUT/$BASE-两页.pdf" "$DIR/../web/anran-resume.pdf"
+cp "$OUT/$BASE-两页-无照片.pdf" "$DIR/../web/anran-resume.pdf"
 echo "  web/anran-resume.pdf 已同步"
