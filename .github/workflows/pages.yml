@@ -1,0 +1,37 @@
+name: Deploy site to GitHub Pages
+
+# 发布 netlify-deploy/ 到 GitHub Pages(与 Netlify 拖 zip 同源同内容)
+# 仓库转 public 后首次运行会自动启用 Pages;转回 private 即自动下线
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'netlify-deploy/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: netlify-deploy
+      - id: deployment
+        uses: actions/deploy-pages@v4
