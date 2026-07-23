@@ -4,13 +4,13 @@ s = open(f'{sc}/resume_print.html', encoding='utf-8').read()
 reps = [
     ('@page { size: A4; margin: 0; }', '@page { size: A4; margin: 10mm 0 9mm 0; }'),
     ('padding: 6.5mm 11mm 3.5mm 11mm;', 'padding: 0 12mm;'),
-    ('font-size: 9.2pt;\n    line-height: 1.38;', 'font-size: 9.8pt;\n    line-height: 1.52;'),
-    ('.sec { margin-top: 1.9mm; }', '.sec { margin-top: 4mm; }\n  .sec-t { break-after: avoid; page-break-after: avoid; }\n  .col-l, .col-r, .works { break-inside: avoid; page-break-inside: avoid; }'),
+    ('font-size: 9.2pt;\n    line-height: 1.34;', 'font-size: 9.8pt;\n    line-height: 1.52;'),
+    ('.sec { margin-top: 1.6mm; }', '.sec { margin-top: 4mm; }\n  .sec-t { break-after: avoid; page-break-after: avoid; }\n  .col-l, .col-r, .works { break-inside: avoid; page-break-inside: avoid; }'),
     ('font-size: 10.2pt; font-weight: 700; color: #2f54b8;\n    padding-bottom: 0.7mm; border-bottom: 0.35mm solid #dfe4f2; margin-bottom: 1.15mm;',
      'font-size: 10.9pt; font-weight: 700; color: #2f54b8;\n    padding-bottom: 1.2mm; border-bottom: 0.35mm solid #dfe4f2; margin-bottom: 2.2mm;'),
-    ('li { position: relative; padding-left: 3.4mm; margin-bottom: 0.5mm; }',
+    ('li { position: relative; padding-left: 3.4mm; margin-bottom: 0.35mm; }',
      'li { position: relative; padding-left: 3.6mm; margin-bottom: 1mm; }'),
-    ('.entry { margin-bottom: 1.05mm;', '.entry { margin-bottom: 2.6mm;'),
+    ('.entry { margin-bottom: 0.85mm;', '.entry { margin-bottom: 2.6mm;'),
     ('.e-title { font-size: 9.7pt;', '.e-title { font-size: 10.2pt;'),
     ('padding: 0 1.7mm;\n    font-size: 8pt;', 'padding: 0 1.7mm;\n    font-size: 8.4pt;'),
     ('.pill {\n    font-size: 8pt;', '.pill {\n    font-size: 8.4pt;'),
@@ -27,7 +27,7 @@ reps = [
      '.avail { margin-top: 2mm; font-size: 9.6pt; color: #23262c; font-weight: 600; }'),
     ('width: 20mm; height: 25.5mm;', 'width: 22mm; height: 28mm;'),
     ('margin-top: 1.7mm; padding-top: 1.2mm;', 'margin-top: 3.5mm; padding-top: 1.8mm;'),
-    ('font-size: 8.4pt; color: #454a54;', 'font-size: 8.8pt; color: #454a54;'),
+    ('font-size: 8.4pt; color: #454a54;', 'font-size: 8.4pt; color: #454a54;'),
     ('.cols { display: flex; gap: 7mm; }', '.cols { display: block; }\n  .col-r { margin-top: 4mm; }'),
 ]
 for old, new in reps:

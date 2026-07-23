@@ -228,12 +228,12 @@ body.slides .reveal { opacity: 1 !important; transform: none !important; }
   background: rgba(95,212,196,0.06); color: var(--acc); font-size: 17px; display: grid; place-items: center; transition: background .2s, transform .15s; }
 .pbtn:hover { background: rgba(95,212,196,0.14); transform: translateY(-1px); }
 .pbtn.main { width: 52px; height: 52px; font-size: 23px; background: var(--acc); color: #06281F; border: none; }
-.tracklist { display: flex; flex-direction: column; gap: 10px; }
+.tracklist { display: flex; flex-direction: column; gap: 6px; }
 .track { display: block; border: 1px solid var(--line-soft); border-radius: 10px; background: var(--surface);
   overflow: hidden; transition: border-color .2s, background .2s; }
 .track:hover { border-color: var(--line); }
 .track.on { border-color: var(--acc); background: rgba(95,212,196,0.08); }
-.track-row { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; }
+.track-row { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 12px; padding: 7px 16px; cursor: pointer; }
 .track .no { font-family: var(--mono); font-size: 11px; color: var(--faint); }
 .track.on .no { color: var(--acc); }
 .track .tt { font-weight: 600; font-size: 14.5px; letter-spacing: 0.03em; }
@@ -325,7 +325,7 @@ body.slides .reveal { opacity: 1 !important; transform: none !important; }
 }
 @media (prefers-reduced-motion: reduce) { .gate-name { animation: none !important; } }
 body.gated { overflow: hidden; }
-.credit-note { margin-top: 16px; font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.08em; line-height: 2; }
+.credit-note { margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.08em; line-height: 1.65; }
 .credit-note b { color: var(--dim); font-weight: 400; }
 
 /* ================= WS3 履历 ================= */
@@ -1476,6 +1476,9 @@ const TRACKS = [
   { title: '云舒', label: '云 舒', cover: 'cover/yunshu.jpg', info: '作曲 · 电视剧《与卿书》片头曲 · 印子月演唱', biz: '商业', role: '作曲',
     src: 'audio/yunshu.mp3', link: 'https://y.qq.com/n/ryqq/songDetail/000zc8vi2ja74d',
     credits: [['作曲','X紫',1],['演唱','印子月'],['作词','YOKI'],['编曲','高翔'],['录音/配唱/混音','李石']] },
+  { title: '百鬼夜行', label: '百 鬼', cover: 'cover/baigui.jpg', info: '演唱 · 汽水音乐 · <b class="ti-hi">收藏 18.5 万+</b>', biz: '原创', role: '演唱',
+    src: 'audio/baigui.mp3', link: 'https://www.qishui.com/share/track?track_id=7117814352081586177',
+    credits: [['演唱','X紫',1],['作词','谭末秋 / 高璐'],['作曲','谭末秋'],['编曲','Mzf 小慕'],['制作人','谭末秋 / 高璐'],['戏腔演唱','林高源'],['混音','Ethan 张栩赫'],['录音','王子祺']] },
   { title: '终焉之刻', label: '终 焉', cover: 'cover/zhongyan.jpg', info: '作曲 / 统筹 ·《阴阳师》同人企划 · 网易云', biz: '同人', role: '作曲 / 统筹',
     src: 'audio/zhongyan.mp3', embed: { type: 'netease', sid: '2090661117' }, link: 'https://music.163.com/song?id=2090661117',
     credits: [['作曲','X紫 / 影子宝宝',1],['统筹','X紫',1],['作词','巴欧特'],['编曲/混音','影子宝宝'],['演唱/和声','漆柚'],['封面','七弦'],['监制','影子宝宝 / 巴欧特'],['制作/出品','禾几组']] },
